@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --logo: url('./assets/logo.svg');
+
+  --tx-color-main: #B0907A;
+  --bg-color-page: #403F3D;
+
+  --font-main: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--tx-color-main);
+  background: var(--bg-color-page);
+
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  max-width: 1440px;
+  height: 60px;
+  padding: 10px;
+  margin: 0 auto;
+  background: #343331;
+  box-shadow: 0 5px 15px 0px rgba(118, 176, 243, 0.7);
+}
+
+.header .btn {
+  color: #fff;
+  background: #5c636a;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #42464b;
+  box-shadow: 2px 2px 4px 2px rgb(255, 255, 255);
+}
+
+/*** disabled style ***/
+.btn:disabled {
+  pointer-events: none;
+  opacity: .65;
+}
