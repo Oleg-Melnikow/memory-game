@@ -1,12 +1,4 @@
-function createElement(tagName, className, parent = null, textContent = "") {
-  const element = document.createElement(tagName);
-  if (className) element.classList.add(className);
-  if (textContent) element.textContent = textContent;
-  if (parent) parent.append(element);
-  return element;
-}
-
-export function createLeaderboard(root) {
+export function createLeaderboard(root, createElement) {
   const modalContainer = createElement("dialog", "container-modal", root);
   const modal = createElement("div", "popup", modalContainer);
   const modalHeader = createElement("div", "modal-header", modal);

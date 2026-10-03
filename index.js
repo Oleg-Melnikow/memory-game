@@ -4,27 +4,25 @@ const root = document.getElementById("root");
 
 const header = document.createElement("header");
 header.classList.add("header");
+root.append(header);
 
 function onClickNewGame() {
   console.log("New game");
 }
 
-const newGameButton = createButton("New Game", onClickNewGame);
-const leaderboardButton = createButton("Leaderboard");
+const leaderboard = createLeaderboard(root, createElement);
+createButton("New Game", onClickNewGame, header);
+createButton("Leaderboard", leaderboard.open, header);
 
-root.append(header);
-header.append(newGameButton);
-header.append(leaderboardButton);
-
-function createButton(name, onClickButton = null) {
-  const button = document.createElement("button");
-  button.classList.add("btn");
-  button.textContent = name;
-  if (onClickButton) {
-    button.addEventListener("click", onClickButton);
-  }
-  return button;
+function createElement(tagName, className, parent = null, textContent = "") {
+  const element = document.createElement(tagName);
+  if (className) element.classList.add(className);
+  if (textContent) element.textContent = textContent;
+  if (parent) parent.append(element);
+  return element;
 }
 
-const leaderboard = createLeaderboard(root);
-leaderboardButton.addEventListener("click", leaderboard.open);
+function createButton(name, onClickButton, parent) {
+  const button = createElement("button", "btn", parent, name);
+  button.addEventListener("click", onClickButton);
+}
