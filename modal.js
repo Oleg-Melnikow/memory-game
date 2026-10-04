@@ -1,10 +1,21 @@
-export function createLeaderboard(root, createElement) {
+export function createLeaderboard(
+  root,
+  createElement,
+  type,
+  moves = null,
+  createButton,
+  initGame,
+) {
   const modalContainer = createElement("dialog", "container-modal", root);
   const modal = createElement("div", "popup", modalContainer);
   const modalHeader = createElement("div", "modal-header", modal);
 
-  createElement("p", "modal-title", modalHeader, "Leaderboard");
+  const headerTitle = type === "win" ? "🎉 Поздравляем!" : "Leaderboard";
+
+  createElement("h2", "modal-title", modalHeader, headerTitle);
   const closeBtn = createElement("button", "close", modalHeader);
+
+  const modalBody = createElement("div", "modal-body", modal);
 
   const toggleModal = (isOpen) => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -14,6 +25,7 @@ export function createLeaderboard(root, createElement) {
       document.addEventListener("keyup", handleKeyDown);
     } else {
       document.removeEventListener("keyup", handleKeyDown);
+      modalContainer.remove();
     }
   };
 
@@ -27,6 +39,16 @@ export function createLeaderboard(root, createElement) {
   const handleKeyDown = (event) => {
     if (event.key === "Escape") close();
   };
+
+  if (type === "win") {
+    const winMessage = createElement("p", "win-message", modalBody);
+    winMessage.textContent = `Вы нашли все пары за ${moves} ходов!`;
+    const restart = () => {
+      close();
+      initGame?.();
+    };
+    createButton("New Game", restart, modal);
+  }
 
   closeBtn.addEventListener("click", close);
   modalContainer.addEventListener("click", handleOutsideClick);

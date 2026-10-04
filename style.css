@@ -46,7 +46,9 @@ main {
   box-shadow: 0 5px 15px 0px rgba(118, 176, 243, 0.7);
 }
 
-.header .btn {
+.header .btn,
+.win-overlay .btn,
+.popup .btn {
   color: #fff;
   background: #5c636a;
   display: inline-block;
@@ -96,7 +98,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
   background: #ccc;
   width: 800px;
@@ -114,7 +116,7 @@ main {
   position: relative;
 }
 
-.modal-header p {
+.modal-header h2 {
   color: var(--tx-color-main);
   font-size: 24px;
   font-weight: bold;
@@ -234,4 +236,18 @@ main {
   font-weight: bold;
   color: #bcbcbc;
   min-width: 90px;
+}
+
+.modal-body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.win-message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin: 25px 0;
 }
