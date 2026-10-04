@@ -1,4 +1,5 @@
 import { createLeaderboard } from "./modal.js";
+import { saveGameResult } from "./helpers/saveGameResult.js";
 
 const root = document.getElementById("root");
 
@@ -154,6 +155,7 @@ function checkForMatch() {
 
 function checkWinCondition() {
   if (matchedPairs === TOTAL_PAIRS) {
+    saveGameResult(moves);
     openModal("win", moves, createButton, initGame);
   }
 }

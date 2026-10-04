@@ -240,14 +240,46 @@ main {
 
 .modal-body {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
+  align-items: center;
 }
 
-.win-message {
+.win-message,
+.empty-list {
   font-size: 1.5rem;
   font-weight: bold;
   color: #333;
   margin: 25px 0;
+}
+
+.leaderboard-container {
+  margin: 20px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.leaderboard-title {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
