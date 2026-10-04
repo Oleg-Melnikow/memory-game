@@ -28,16 +28,20 @@ body {
 
 }
 
+.header,
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  max-width: 1440px;
   height: 60px;
   padding: 10px;
-  margin: 0 auto;
   background: #343331;
   box-shadow: 0 5px 15px 0px rgba(118, 176, 243, 0.7);
 }
@@ -85,6 +89,7 @@ body {
 
 .container-modal[open] {
   display: flex;
+  z-index: 10;
 }
 
 .popup {
@@ -155,4 +160,78 @@ body {
 .close::after {
   left: 3px;
   transform: rotate(-45deg);
+}
+
+/* styles for main game block */
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.card {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-back {
+  background-color: #2e3d49;
+  color: white;
+}
+
+.card-front {
+  background-color: #ffffff;
+  border: 2px solid #2e3d49;
+  transform: rotateY(180deg);
+}
+
+.info-panel {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  gap: 10px;
+}
+
+.moves-counter,
+.pairs-counter {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #bcbcbc;
+  min-width: 90px;
 }
