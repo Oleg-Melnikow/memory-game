@@ -1,4 +1,5 @@
 import { createLeaderboard } from "./modal.js";
+import { saveGameResult } from "./helpers/saveGameResult.js";
 
 const root = document.getElementById("root");
 
@@ -6,9 +7,24 @@ const header = document.createElement("header");
 header.classList.add("header");
 root.append(header);
 
-const leaderboard = createLeaderboard(root, createElement);
+function openModal(type, moves, createButton, initGame) {
+  const leaderboard = createLeaderboard(
+    root,
+    createElement,
+    type,
+    moves,
+    createButton,
+    initGame,
+  );
+  return leaderboard.open();
+}
+
 createButton("New Game", initGame, header);
-createButton("Leaderboard", leaderboard.open, header);
+createButton(
+  "Leaderboard",
+  () => openModal("leaderboard", null, createButton),
+  header,
+);
 
 function createElement(tagName, className, parent = null, textContent = "") {
   const element = document.createElement(tagName);
@@ -134,13 +150,17 @@ function checkForMatch() {
     matchedPairs++;
     updateMovesDisplay();
     disableCards();
+    checkWinCondition();
   } else {
     updateMovesDisplay();
     unflipCards();
   }
+}
 
+function checkWinCondition() {
   if (matchedPairs === TOTAL_PAIRS) {
-    console.log("You win!!!", `You need ${moves} moves for win`);
+    saveGameResult(moves);
+    openModal("win", moves, createButton, initGame);
   }
 }
 
