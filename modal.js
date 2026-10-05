@@ -13,7 +13,6 @@ export function createLeaderboard(
   const headerTitle = type === "win" ? "🎉 Поздравляем!" : "Leaderboard";
 
   createElement("h2", "modal-title", modalHeader, headerTitle);
-  const closeBtn = createElement("button", "close", modalHeader);
 
   const modalBody = createElement("div", "modal-body", modal);
 
@@ -40,6 +39,8 @@ export function createLeaderboard(
     if (event.key === "Escape") close();
   };
 
+  const controls = createElement("div", "controls", modal);
+
   if (type === "win") {
     const winMessage = createElement("p", "win-message", modalBody);
     winMessage.textContent = `Вы нашли все пары за ${moves} ходов!`;
@@ -47,14 +48,14 @@ export function createLeaderboard(
       close();
       initGame?.();
     };
-    createButton("New Game", restart, modal);
+    createButton("New Game", restart, controls);
   }
 
   if (type == "leaderboard") {
     createTableRecords(modalBody, createElement);
   }
 
-  closeBtn.addEventListener("click", close);
+  createButton("Close", close, controls);
   modalContainer.addEventListener("click", handleOutsideClick);
 
   return { open, close };

@@ -20,7 +20,11 @@ function openModal(type, moves, createButton, initGame) {
 }
 
 createButton("New Game", initGame, header);
-createButton("Leaderboard", () => openModal("leaderboard"), header);
+createButton(
+  "Leaderboard",
+  () => openModal("leaderboard", null, createButton),
+  header,
+);
 
 function createElement(tagName, className, parent = null, textContent = "") {
   const element = document.createElement(tagName);
